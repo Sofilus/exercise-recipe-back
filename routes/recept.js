@@ -3,6 +3,18 @@ var router = express.Router();
 
 const fs = require('fs');
 
+router.get('/', function(req, res){
+  fs.readFile("./recept.json", function (err, data) {
+    if(err){
+      console.log(err)
+    }
+    let recepies = JSON.parse(data)
+    res.send(recepies)
+    return;
+  })
+})
+
+
 router.post('/', function(req, res) {
   fs.readFile("./recept.json", function (err, data) {
     if(err){
